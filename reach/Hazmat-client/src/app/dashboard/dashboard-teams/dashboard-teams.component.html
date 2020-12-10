@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <mat-chip-list>
+      <mat-chip class="chipClass" *ngFor="let element of elements; let index = index" [selectable]="true"
+        [selected]="index === 0" (click)="chip.select(); getSelectedChip(element)" #chip="matChip" value=element.value>
+        {{element.state}}
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+  <mat-card style="margin-top: 12px;" *ngFor="let member of members; let index = index" (click)="onSelect(member)" [style.background-color]="member===selectedTeam ? 'rgba(98, 0, 238, 0.12)' : ''">
+    <mat-card-header>
+      <h4>{{member.name}}</h4>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="members">
+        <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="1.5:1">
+          <mat-grid-tile *ngFor="let crew of member.crew" id="tile">
+            <div style="width: 85px; height: 85px;">
+              <mat-icon>person</mat-icon>
+              <mat-icon *ngIf="crew.inDanger" style="color: #B00020;">warning</mat-icon>
+              <mat-checkbox color="primary"></mat-checkbox>
+              <p id="name">{{crew.lName}}, {{crew.fName}}</p>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

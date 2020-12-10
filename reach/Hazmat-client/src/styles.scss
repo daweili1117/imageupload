@@ -1,0 +1,51 @@
+// /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+app-people {height: 100%; width: 100%; margin: 12px;}
+app-team {height: 100%; width: 100%; margin: 12px;}
+app-threshold {height: 100%; width: 100%; margin: 12px;}
+app-dashboard {height: 100%; width: 100%; margin: 12px;}
+app-devices {height: 100%; width: 100%; margin: 12px;}
+app-device-assignment {height: 100%; width: 100%; margin: 12px;}
+app-login {height: 100%; width: 100%;}
+table { width: 100%;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+html {background-color: #f5f5f5;}
+
+/* notification */
+  snack-bar-container.success {
+    background-color: #DFF2BF;
+    color : #4F8A10;
+  }
+
+  snack-bar-container.warn {
+    background-color: #FEEFB3;
+    color : #9F6000;
+  }
+  snack-bar-container.error {
+    background-color: #FFD2D2;
+    color : #D8000C;
+  }
+
+
+  snack-bar-container.notification simple-snack-bar{
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+
+  .mat-sort-header-arrow{
+  color: white; 
+  opacity: 1; 
+  transform: translateY(0px);
+}
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+ 
+  .hide{
+    display: none;
+}

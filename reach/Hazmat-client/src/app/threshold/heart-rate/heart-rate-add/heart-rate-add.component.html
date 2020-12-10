@@ -1,0 +1,71 @@
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span class="header" *ngIf="action=='New'">New Heart Rate</span>
+    <span class="header" *ngIf="action=='Edit'">Update Heart Rate</span>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+  <form [formGroup]="heartRateFormGroup" class="normal-form">
+    <large *ngFor="let error of errormessages" class="error-message">
+      {{error}}
+    </large>
+  
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile class="mat-grid-tile">
+        <div class="controls-container">
+            <input type="hidden" formControlName="HeartRateID">
+          <mat-form-field heartRateFormGroup class="common-mat-input" id="AgeGroup">
+            <mat-label>Age Group</mat-label>
+            <input matInput placeholder="Enter Age Group*" formControlName="AgeGroup" ng-ip-address>
+            <mat-error *ngIf="heartRateFormGroup.controls['AgeGroup'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['AgeGroup'].errors?.serverError">{{heartRateFormGroup.controls['AgeGroup'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          <mat-form-field heartRateFormGroup class="common-mat-input" id="LowCritical">
+            <mat-label>Low Critical Heart Rate</mat-label>
+            <input matInput placeholder="Enter Low Critical HR Threshold*" formControlName="LowCritical">
+            <mat-error *ngIf="heartRateFormGroup.controls['LowCritical'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['LowCritical'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.hasError('lowCriticalGreaterThanLowTarget')">Value must be less than Low Target Heart Rate.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['LowCritical'].errors?.serverError">{{heartRateFormGroup.controls['LowCritical'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          <mat-form-field heartRateFormGroup class="common-mat-input" id="LowTargetHR">
+            <mat-label>Low Target Heart Rate</mat-label>
+            <input matInput placeholder="Enter Low Target HR Threshold*" formControlName="LowTargetHR">
+            <mat-error *ngIf="heartRateFormGroup.controls['LowTargetHR'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['LowTargetHR'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['LowTargetHR'].errors?.serverError">{{heartRateFormGroup.controls['LowTargetHR'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="mat-grid-tile">
+        <div class="controls-container">  
+          <mat-form-field heartRateFormGroup class="common-mat-input" id="HighTargetHR">
+            <mat-label>High Target Heart Rate</mat-label>
+            <input matInput placeholder="Enter High Target HR Threshold*" formControlName="HighTargetHR">
+            <mat-error *ngIf="heartRateFormGroup.controls['HighTargetHR'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['HighTargetHR'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['HighTargetHR'].errors?.serverError">{{heartRateFormGroup.controls['HighTargetHR'].errors?.serverError}}</mat-error>
+          </mat-form-field>    
+          <mat-form-field heartRateFormGroup class="common-mat-input" id="HighCritical">
+            <mat-label>High Critical Heart Rate</mat-label>
+            <input matInput placeholder="Enter High Critical HR Threshold*" formControlName="HighCritical">
+            <mat-error *ngIf="heartRateFormGroup.controls['HighCritical'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['HighCritical'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['HighCritical'].errors?.serverError">{{heartRateFormGroup.controls['HighCritical'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          <mat-form-field heartRateFormGroup class="common-mat-input" id="HRIndex">
+            <mat-label>HR Index</mat-label>
+            <input matInput placeholder="Enter Unique HR Index*" formControlName="HRIndex">
+            <mat-error *ngIf="heartRateFormGroup.controls['HRIndex'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heartRateFormGroup.controls['HRIndex'].errors?.serverError">{{heartRateFormGroup.controls['HRIndex'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          
+          <div class="button-row">
+            <button mat-raised-button color="primary" (click)="saveHeartRate(heartRateFormGroup.value)">Submit</button>
+            <button mat-stroked-button color="Basic" (click)="cancelHeartRate()">Cancel</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+  </form>
+  

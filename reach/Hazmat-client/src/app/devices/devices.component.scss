@@ -1,0 +1,98 @@
+.personImage {
+  width: 4.5rem;
+  height: 4.5rem;
+  border: lightgrey solid 2px;
+  border-radius: 50%;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.personIcons {
+  width: 2rem;
+  height: 2rem;
+  padding-left: 0rem;
+
+}
+
+::ng-deep .personIcons>svg {
+  width: 2rem !important;
+  height: 3rem !important;
+  padding-left: 0rem;
+}
+
+.addIcons {
+  width: 2rem;
+  height: 2rem;
+  padding-left: 0rem;
+}
+
+::ng-deep .addIcons>svg {
+  width: 2rem !important;
+  height: 3rem !important;
+  padding-left: 4rem;
+}
+
+
+th.mat-header-cell {
+  text-align: center !important;
+  border: 0.5px solid #CCC;
+  padding: 0 !important;
+  background-color: #0000A0;
+  color: white;
+
+
+}
+
+td.mat-cell {
+  text-align: center !important;
+  border: 0.5px solid #CCC;
+  padding: 0 !important;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+tr.mat-header-row {
+  height: 30px;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  // padding: 8px;
+  font-weight: lighter;
+  // margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

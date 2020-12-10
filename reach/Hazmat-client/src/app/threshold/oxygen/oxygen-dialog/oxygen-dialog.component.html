@@ -1,0 +1,48 @@
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span class="header" *ngIf="action=='New'">New Blood Oxygen</span>
+    <span class="header" *ngIf="action=='Edit'">Update Blood Oxygen</span>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+  <form [formGroup]="oxygenFormGroup" class="normal-form">
+    <large *ngFor="let error of errormessages" class="error-message">
+      {{error}}
+    </large>
+    <mat-error *ngIf="oxygenFormGroup.errors?.numberOutOfRange">Please check numbers</mat-error>
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile class="mat-grid-tile">
+        <div class="controls-container">
+            <input type="hidden" formControlName="SpO2ID">
+          <mat-form-field oxygenFormGroup class="common-mat-input" id="Low">
+            <mat-label>Low SpO2</mat-label>
+            <input matInput placeholder="Enter Low SpO2 Threshold*" formControlName="Low">
+            <mat-error *ngIf="oxygenFormGroup.controls['Low'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls['Low'].errors?.min">Must be a greater than zero.</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls['Low'].errors?.serverError">{{oxygenFormGroup.controls['Low'].errors?.serverError}}</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls.Low.errors?.greaterThan">{{oxygenFormGroup.controls.Low.errors.greaterThan.message}}</mat-error>
+          </mat-form-field>
+          <mat-form-field oxygenFormGroup class="common-mat-input" id="Normal">
+            <mat-label>Normal SpO2</mat-label>
+            <input matInput placeholder="Enter Normal SpO2 Threshold*" formControlName="Normal">
+            <mat-error *ngIf="oxygenFormGroup.controls['Normal'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls['Normal'].errors?.min">Must be a greater than zero.</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls['Normal'].errors?.serverError">{{oxygenFormGroup.controls['Normal'].errors?.serverError}}</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls.Normal.errors?.greaterThan">{{oxygenFormGroup.controls.Normal.errors.greaterThan.message}}</mat-error>
+          </mat-form-field>
+          <mat-form-field oxygenFormGroup class="common-mat-input" id="SpO2Index">
+            <mat-label>SpO2 Index</mat-label>
+            <input matInput placeholder="Enter Unique SpO2 Index*" formControlName="SpO2Index">
+            <mat-error *ngIf="oxygenFormGroup.controls['SpO2Index'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="oxygenFormGroup.controls['SpO2Index'].errors?.serverError">{{oxygenFormGroup.controls['SpO2Index'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          
+          <div class="button-row">
+            <button mat-raised-button color="primary" (click)="saveOxygen(oxygenFormGroup.value)" [disabled]="!oxygenFormGroup.valid">Submit</button>
+            <button mat-stroked-button color="Basic" (click)="cancelOxygen()">Cancel</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+  </form>
+  

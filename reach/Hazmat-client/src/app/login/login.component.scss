@@ -1,0 +1,50 @@
+.loginContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 30vh;
+}
+
+.login-field-wrapper{
+  display: flex;
+  padding-bottom: 1.5rem;
+}
+
+.login-form-field{
+  width: 100%;
+}
+
+.loginButton-Error{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
+}
+
+.login-button{
+
+  display:flex;
+  flex-direction:column;
+}
+
+
+.mat-card-header{
+  background-color:#0000A0;
+  padding-top:1rem;
+  padding-bottom:0.5rem;
+}
+
+.mat-card-title {
+  color:white !important;
+}
+
+.formField {
+  width: 25rem;
+}
+
+.mat-card {
+  padding: 0rem;
+  width:27rem;
+}
+
+.mat-card-content {
+  padding: 1rem;
+}

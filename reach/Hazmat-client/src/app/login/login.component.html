@@ -1,0 +1,48 @@
+<form class="login-form" [formGroup]="loginFormGroup" >
+  <div class="loginContainer">
+    <mat-card>
+      <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="login-field-wrapper">
+          <mat-form-field class="login-form-field">
+           
+
+              <input matInput placeholder="User Name"  id="username" formControlName="userName">
+                <mat-error *ngIf=" loginFormGroup.controls.userName.touched && loginFormGroup.controls.userName.errors">
+                  UserName is required
+                </mat-error>
+            
+          </mat-form-field>
+        </div>
+        <div class="login-field-wrapper">
+          <mat-form-field class="login-form-field">
+            <input matInput placeholder="Password" id="password"  [type]="hide ? 'password' : 'text'"  formControlName="password" required>
+            <mat-error *ngIf="loginFormGroup.controls.password.touched && loginFormGroup.controls.password.errors && loginFormGroup.controls.password.errors.required">
+              Password is required
+            </mat-error>
+            <!-- <mat-error *ngIf="loginFormGroup.controls.password.touched && loginFormGroup.controls.password.errors">
+              Invalid Password format
+            </mat-error> -->
+        </mat-form-field>
+        </div>
+        <div class="loginButton-Error"> 
+          <button class= "login-button" mat-raised-button color="primary" type="submit" [disabled]='loginFormGroup.invalid' id="signin" (click)="Login()">Login</button>
+
+          <mat-error class= "login-button" *ngIf="loginError">
+              Authentication failed
+          </mat-error>
+          
+        </div>
+        
+          
+        
+
+          
+          
+      </mat-card-content>
+  </mat-card> 
+  </div>   
+
+  </form>

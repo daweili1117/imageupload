@@ -1,0 +1,144 @@
+<mat-toolbar>
+  <span class="fill-remaining-space"></span>
+  <span class="header" *ngIf="action=='New'">New Person</span>
+  <span class="header" *ngIf="action=='Edit'">Update Person</span>
+  <span class="fill-remaining-space"></span>
+</mat-toolbar>
+<form [formGroup]="peopleFormGroup" class="normal-form">
+  <large *ngFor="let error of serverErrors" class="error-message">
+    {{error}}
+  </large>
+
+  <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-tile class="mat-grid-tile">
+      <div class="controls-container">
+
+          <!-- <h4>Upload Image for Person</h4>
+          <label>
+            Image:
+            <matinput type="file" (change)="onImageChanged($evnet)")>
+          </label>
+          <button (click="newimage()" )>Upload</button> -->
+
+
+
+
+        <mat-form-field appearance="standard" peopleFormGroup class="common-mat-input" id="ImageUrl">
+            <mat-label>Upload Person Image</mat-label>
+            <ngx-mat-file-input formControlName="ImageUrl" placeholder="Upload Image" ></ngx-mat-file-input>
+            <mat-icon matSuffix>add_photo_alternate</mat-icon>
+          </mat-form-field>
+          
+        <mat-form-field peopleFormGroup class="common-mat-input" id="FirstName">
+          <mat-label>First Name*</mat-label>
+          <input matInput placeholder="Enter First Name*" formControlName="FirstName" ng-ip-address>
+          <mat-error *ngIf="peopleFormGroup.controls['FirstName'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['FirstName'].errors?.fieldError">
+            {{peopleFormGroup.controls['FirstName'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field peopleFormGroup class="common-mat-input" id="LastName">
+          <mat-label>Last Name*</mat-label>
+          <input matInput placeholder="Enter Last Name*" formControlName="LastName">
+          <mat-error *ngIf="peopleFormGroup.controls['LastName'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['LastName'].errors?.fieldError">
+            {{peopleFormGroup.controls['LastName'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field peopleFormGroup class="common-mat-input" id="RoleID">
+          <mat-label>Role</mat-label>
+          <mat-select placeholder="Choose Role*" [(value)]="selectedRole" formControlName="RoleID">
+            <mat-option *ngFor="let role of roles" [value]="role.value">
+              {{role.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls['RoleID'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['RoleID'].errors?.fieldError">
+            {{peopleFormGroup.controls['RoleID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field peopleFormGroup class="common-mat-input" id="CrewID">
+          <mat-label>Crew</mat-label>
+          <mat-select placeholder="Choose Crew*" [(value)]="selectedCrew" formControlName="CrewID">
+            <mat-option *ngFor="let crew of crews" [value]="crew.value">
+              {{crew.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls['CrewID'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['CrewID'].errors?.fieldError">
+            {{peopleFormGroup.controls['CrweID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="mat-grid-tile">
+      <div class="controls-container">
+        <mat-form-field peopleFormGroup class="common-mat-input" id="HeartRateID">
+          <mat-label>HR Threshold</mat-label>
+          <mat-select placeholder="Choose HR*" [(value)]="selectedHR" formControlName="HeartRateID">
+            <mat-option [value]="null">
+              -None-
+            </mat-option>
+            <mat-option *ngFor="let hr of HRIndexes" [value]="hr.value">
+              {{hr.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls['HeartRateID'].errors?.required">This field is mandatory.
+          </mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['HeartRateID'].errors?.fieldError">
+            {{peopleFormGroup.controls['HeartRateID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field peopleFormGroup class="common-mat-input" id="BloodPressureID">
+          <mat-label>BP Threshold</mat-label>
+          <mat-select placeholder="Choose BP*" [(value)]="selectedBP" formControlName="BloodPressureID">
+            <mat-option [value]="null">
+              -None-
+            </mat-option>
+            <mat-option *ngFor="let bp of BPIndexes" [value]="bp.value">
+              {{bp.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls['BloodPressureID'].errors?.required">This field is mandatory.
+          </mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['BloodPressureID'].errors?.fieldError">
+            {{peopleFormGroup.controls['BloodPressureID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field peopleFormGroup class="common-mat-input" id="HeatIndexID">
+          <mat-label>HI Threshold</mat-label>
+          <mat-select placeholder="Choose HI" [(value)]="selectedHI" formControlName="HeatIndexID">
+            <mat-option [value]="null">
+              -None-
+            </mat-option>
+            <mat-option *ngFor="let hi of HIIndexes" [value]="hi.value">
+              {{hi.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls['HeatIndexID'].errors?.required">This field is mandatory.
+          </mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['HeatIndexID'].errors?.fieldError">
+            {{peopleFormGroup.controls['HeatIndexID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field peopleFormGroup class="common-mat-input" id="SpO2ID">
+          <mat-label>SpO2 Threshold</mat-label>
+          <mat-select placeholder="Choose SPO2" [(value)]="selectedSpO2" formControlName="SpO2ID">
+            <mat-option [value]="null">
+              -None-
+            </mat-option>
+            <mat-option *ngFor="let sp of SPIndexes" [value]="sp.value">
+              {{sp.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="peopleFormGroup.controls['SpO2ID'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="peopleFormGroup.controls['SpO2ID'].errors?.fieldError">
+            {{peopleFormGroup.controls['SpO2ID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+        <div class="button-row">
+          <button mat-raised-button color="primary" (click)="savePerson(peopleFormGroup.value)">Submit</button>
+          <button mat-stroked-button color="Basic" (click)="cancelPerson()">Cancel</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</form>

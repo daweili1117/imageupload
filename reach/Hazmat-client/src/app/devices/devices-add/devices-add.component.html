@@ -1,0 +1,80 @@
+<mat-toolbar>
+  <span class="fill-remaining-space"></span>
+  <span class="header" *ngIf="action=='New'">New Device</span>
+  <span class="header" *ngIf="action=='Edit'">Update Device</span>
+  <span class="fill-remaining-space"></span>
+</mat-toolbar>
+<form [formGroup]="devicesFormGroup" class="normal-form">
+  <large *ngFor="let error of serverErrors" class="error-message">
+    {{error}}
+  </large>
+
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile class="mat-grid-tile">
+      <div class="controls-container">
+        <mat-form-field devicesFormGroup class="common-mat-input" id="DeviceID">
+          <mat-label>Device ID*</mat-label>
+          <input matInput placeholder="Enter Device ID*" formControlName="DeviceID" ng-ip-address>
+          <mat-error *ngIf="devicesFormGroup.controls['DeviceID'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="devicesFormGroup.controls['DeviceID'].errors?.fieldError">{{devicesFormGroup.controls['DeviceID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field devicesFormGroup class="common-mat-input" id="IP">
+          <mat-label>Device IP*</mat-label>
+          <input matInput placeholder="Enter Device IP*" formControlName="IP">
+          <mat-error *ngIf="devicesFormGroup.controls['IP'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="devicesFormGroup.controls['IP'].errors?.fieldError">{{devicesFormGroup.controls['IP'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+        <mat-form-field devicesFormGroup class="common-mat-input" id="Description">
+          <mat-label>Device description*</mat-label>
+          <input matInput placeholder="Enter Device description*" formControlName="Description">
+          <mat-error *ngIf="devicesFormGroup.controls['Description'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="devicesFormGroup.controls['Description'].errors?.fieldError">{{devicesFormGroup.controls['Description'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="mat-grid-tile">
+      <div class="controls-container">
+
+        <mat-form-field devicesFormGroup class="common-mat-input" id="Person">
+          <mat-label>Assign To</mat-label>
+            <mat-select placeholder="Choose person" [(value)]="selectedPerson" formControlName="PersonID">
+              <mat-option  [value]="null" >
+                -None-
+              </mat-option>
+              <mat-option *ngFor="let person of persons" [value]="person.value" >
+                {{person.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="devicesFormGroup.controls['PersonID'].errors?.fieldError">{{devicesFormGroup.controls['PersonID'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field devicesFormGroup class="common-mat-input" id="Type">
+          <mat-label>Device type*</mat-label>
+            <mat-select placeholder="Choose type*" [(value)]="selectedType" formControlName="Type">
+              <mat-option *ngFor="let type of Types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+          <mat-error *ngIf="devicesFormGroup.controls['Type'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="devicesFormGroup.controls['Type'].errors?.fieldError">{{devicesFormGroup.controls['Type'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field devicesFormGroup class="common-mat-input" id="Status">
+          <mat-label>Device Status*</mat-label>
+          <mat-select placeholder="Unassigned" [(value)]="selectedStauts" formControlName="Status">
+            <mat-option *ngFor="let Status of STATUS_CHOICES" [value]="Status.value">
+              {{Status.viewValue}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="devicesFormGroup.controls['Status'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="devicesFormGroup.controls['Status'].errors?.fieldError">{{devicesFormGroup.controls['Status'].errors?.fieldError}}</mat-error>
+        </mat-form-field>
+      <div class="button-row">
+          <button mat-raised-button color="primary" (click)="saveDevice(devicesFormGroup.value)">Submit</button>
+          <button mat-stroked-button color="Basic" (click)="cancelDevice()">Cancel</button>
+        </div>
+      </div>
+    </mat-grid-tile>
+    </mat-grid-list>
+
+</form>

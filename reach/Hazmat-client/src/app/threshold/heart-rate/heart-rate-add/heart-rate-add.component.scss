@@ -1,0 +1,36 @@
+form {
+    width: 100%;
+}
+.mat-toolbar{
+    background: #0000A0;
+    color: white;
+
+}
+form.normal-form{
+    margin: 10px;
+}
+.controls-container{
+    width: 100%;
+    padding: 5%;
+}
+.controls-container > * {
+    width: 100%;
+    }
+
+.mat-grid-tile {
+    padding-top: 0px !important;
+}
+.error-message {
+    text-align: center;
+    color: red;
+}
+
+.mat-raised-button{
+  margin: 10px 15px;
+}
+.mat-stroked-button{
+  margin: 10px 15px;
+}
+.mat-stroked-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+  background-color: #1003a0;
+}

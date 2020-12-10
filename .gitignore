@@ -1,0 +1,11 @@
+*.pyc
+db.sqlite3
+myvenv
+hazvenv
+venv
+env
+node_modules
+__pycache__
+local_settings.py
+.idea/workspace.xml
+.DS_Store

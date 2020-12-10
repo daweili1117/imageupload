@@ -1,0 +1,48 @@
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span class="header" *ngIf="action=='New'">New Heat Index</span>
+    <span class="header" *ngIf="action=='Edit'">Update Heat Index</span>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+  <form [formGroup]="heatIndexFormGroup" class="normal-form">
+    <large *ngFor="let error of errormessages" class="error-message">
+      {{error}}
+    </large>
+    <mat-error *ngIf="heatIndexFormGroup.errors?.numberOutOfRange">Please check numbers</mat-error>
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile class="mat-grid-tile">
+        <div class="controls-container">
+            <input type="hidden" formControlName="HeatIndexID">
+          <mat-form-field heatIndexFormGroup class="common-mat-input" id="ModerateRisk">
+            <mat-label>Moderate Risk</mat-label>
+            <input matInput placeholder="Enter Moderate Risk Threshold*" formControlName="ModerateRisk">
+            <mat-error *ngIf="heatIndexFormGroup.controls['ModerateRisk'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls['ModerateRisk'].errors?.min">Must be a greater than zero.</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls['ModerateRisk'].errors?.serverError">{{heatIndexFormGroup.controls['ModerateRisk'].errors?.serverError}}</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls.ModerateRisk.errors?.greaterThan">{{heatIndexFormGroup.controls.ModerateRisk.errors.greaterThan.message}}</mat-error>
+          </mat-form-field>
+          <mat-form-field heatIndexFormGroup class="common-mat-input" id="HighRisk">
+            <mat-label>High Risk</mat-label>
+            <input matInput placeholder="Enter High Risk Threshold*" formControlName="HighRisk">
+            <mat-error *ngIf="heatIndexFormGroup.controls['HighRisk'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls['HighRisk'].errors?.min">Must be a greater than zero.</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls['HighRisk'].errors?.serverError">{{heatIndexFormGroup.controls['HighRisk'].errors?.serverError}}</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls.HighRisk.errors?.greaterThan">{{heatIndexFormGroup.controls.HighRisk.errors.greaterThan.message}}</mat-error>
+          </mat-form-field>
+          <mat-form-field heatIndexFormGroup class="common-mat-input" id="HIIndex">
+            <mat-label>HI Index</mat-label>
+            <input matInput placeholder="Enter Unique Heat Index*" formControlName="HIIndex">
+            <mat-error *ngIf="heatIndexFormGroup.controls['HIIndex'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="heatIndexFormGroup.controls['HIIndex'].errors?.serverError">{{heatIndexFormGroup.controls['HIIndex'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          
+          <div class="button-row">
+            <button mat-raised-button color="primary" (click)="saveHeatIndex(heatIndexFormGroup.value)" [disabled]="!heatIndexFormGroup.valid">Submit</button>
+            <button mat-stroked-button color="Basic" (click)="cancelHeatIndex()">Cancel</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+  </form>
+  

@@ -1,0 +1,86 @@
+<h3>Device Assignment</h3>
+
+<div>
+  <mat-chip-list>
+    <mat-chip class="chipClass" *ngFor="let element of elements; let index = index" [selectable]="true"
+      [selected]="index === 0" (click)="chip.select(); getSelectedChip(element)" #chip="matChip" value=element.value>
+      {{element.state}}
+    </mat-chip>
+  </mat-chip-list>
+</div>
+
+<div class="mat-elevation-z8" id="table">
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <table mat-table matSort [dataSource]="deviceAssignmentData">
+
+    <ng-container matColumnDef="ImageUrl">
+      <th mat-header-cell *matHeaderCellDef>Photo</th>
+      <td mat-cell *matCellDef="let row">
+        <img height="120px" width="160px" src="{{row.ImageUrl}}">
+        <!-- {{row.ImageUrl}} -->
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="FirstName">
+      <th mat-header-cell *matHeaderCellDef>First name</th>
+      <td mat-cell *matCellDef="let row">
+        {{row.FirstName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="LastName">
+      <th mat-header-cell *matHeaderCellDef>Last name</th>
+      <td mat-cell *matCellDef="let row">
+        {{row.LastName}}
+      </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="AssignedDeviceID">
+      <th mat-header-cell *matHeaderCellDef>Assigned device ID</th>
+      <td mat-cell *matCellDef="let row">
+        {{row.AssignedDeviceID}}
+      </td>
+    </ng-container> -->
+
+    <ng-container matColumnDef="AssignedDeviceID">
+      <th mat-header-cell *matHeaderCellDef>Assigned device ID</th>
+      <td mat-cell *matCellDef="let row">
+        <form [formGroup]="deviceForm">
+          <!-- <mat-form-field deviceFormEditGroup>
+            <mat-select [(value)]="selectedDevice" formControlName="AssignedDeviceID">
+              <mat-option *ngFor="let device of devices" [value]="device.value"
+                (click)="onChangeDevice(device.viewValue)">
+                {{device.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <mat-form-field>
+            <mat-select [(value)]="selectedDevice" formControlName="AssignedDeviceID">
+              <mat-option *ngFor="let device of devices" [value]="device.value" (click)="onChangeDevice(device.viewValue)">
+                {{device.viewValue}}
+              </mat-option> 
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Description">
+      <th mat-header-cell *matHeaderCellDef>Device description</th>
+      <td mat-cell *matCellDef="let row">
+        {{row.Description}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+</div>

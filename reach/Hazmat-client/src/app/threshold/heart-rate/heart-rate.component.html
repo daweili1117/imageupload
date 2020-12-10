@@ -1,0 +1,59 @@
+<div class="mat-elevation-z8">
+  <button mat-icon-button>
+    <mat-icon class="addIcons" style="color: green;" (click)="addHeartRate()">add</mat-icon>
+  </button>
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- AgeGroup Column -->
+    <ng-container matColumnDef="AgeGroup">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Age Group</th>
+      <td mat-cell *matCellDef="let row"> {{row.AgeGroup}} </td>
+    </ng-container>
+    <!-- LowCritical Column -->
+    <ng-container matColumnDef="LowCritical">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Low Critical </th>
+      <td mat-cell *matCellDef="let row"> {{row.LowCritical}} </td>
+    </ng-container>
+    <!-- LowTargetHR Column -->
+    <ng-container matColumnDef="LowTargetHR">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Low Target Heart Rate </th>
+      <td mat-cell *matCellDef="let row"> {{row.LowTargetHR}} </td>
+    </ng-container>
+    <!-- HighTargetHR Column -->
+    <ng-container matColumnDef="HighTargetHR">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> High Target Heart Rate </th>
+      <td mat-cell *matCellDef="let row"> {{row.HighTargetHR}} </td>
+    </ng-container>    
+    <!-- HighCritical Column -->
+    <ng-container matColumnDef="HighCritical">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> High Critical </th>
+      <td mat-cell *matCellDef="let row"> {{row.HighCritical}} </td>
+    </ng-container>
+    <!-- HRIndex Column -->
+    <ng-container matColumnDef="HRIndex">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> HR Index </th>
+      <td mat-cell *matCellDef="let row"> {{row.HRIndex}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon (click)="updateHeartRate(element)" style="color: green;">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+            <mat-icon (click)="deleteHeartRate(element)" style="color: red;">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

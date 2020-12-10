@@ -1,0 +1,72 @@
+.navigation-rail-page {
+  br {
+    display: block;
+    margin: -25px 0;
+    content: "";
+  }
+
+  #thresholds {
+    margin-top: 24px;
+  }
+
+  .example-sidenav-content {
+    display: flex;
+    height: 100vh;
+    align-items: baseline;
+    justify-content: center;
+  }
+
+  .example-sidenav {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .nav-button {
+    width: 72px;
+    height: 72px;
+    border-radius: none;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .nav-button:hover {
+    color: #003399;
+  }
+
+  .nav-icon {
+    margin-top: -4px;
+  }
+
+  .nav-button-text {
+    font-size: 10px;
+    // margin-top: -8px;
+    text-transform: none;
+  }
+
+  .selected {
+    color: #003399;
+  }
+
+  .selected:hover {
+    color: #003399;
+  }
+
+  .fade {
+    animation: fade-in 300ms forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .header {
+    text-align: center;
+    margin-top: 16px;
+  }
+}

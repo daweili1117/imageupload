@@ -1,0 +1,13 @@
+<mat-card>
+
+  <mat-card-content style="margin-top: 1rem">
+        <p style="font-size: 1.2rem">
+          {{data.message}}
+        </p>
+    <div mat-dialog-actions>
+      <button mat-stroked-button color="Basic" id="u_dialog" (click)="onOk()" cdkFocusInitial>Remove</button>
+      <button mat-raised-button color="Primary" id="u_dialog" (click)="onCancel()" cdkFocusInitial>Cancel</button>
+    </div>
+
+</mat-card-content>
+</mat-card>

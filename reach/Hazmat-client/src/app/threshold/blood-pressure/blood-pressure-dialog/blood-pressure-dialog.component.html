@@ -1,0 +1,64 @@
+<mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <span class="header" *ngIf="action=='New'">New Mean Arterial Pressure</span>
+    <span class="header" *ngIf="action=='Edit'">Update Mean Arterial Pressure</span>
+    <span class="fill-remaining-space"></span>
+  </mat-toolbar>
+  <form [formGroup]="bloodPressureFormGroup" class="normal-form">
+    <large *ngFor="let error of errormessages" class="error-message">
+      {{error}}
+    </large>
+  
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile class="mat-grid-tile">
+        <div class="controls-container">
+            <input type="hidden" formControlName="BloodPressureID">
+          <mat-form-field bloodPressureFormGroup class="common-mat-input" id="LowMap">
+            <mat-label>Critical Low MAP</mat-label>
+            <input matInput placeholder="Enter Critical Low MAP*" formControlName="LowMap" ng-ip-address>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['LowMap'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['LowMap'].errors?.min">Must be a positive integer.</mat-error>            
+            <mat-error *ngIf="bloodPressureFormGroup.controls['LowMap'].errors?.serverError">{{bloodPressureFormGroup.controls['LowMap'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          <mat-form-field bloodPressureFormGroup class="common-mat-input" id="NormalLowMAP">
+            <mat-label>Low MAP</mat-label>
+            <input matInput placeholder="Enter Low MAP*" formControlName="NormalLowMAP">
+            <mat-error *ngIf="bloodPressureFormGroup.controls['NormalLowMAP'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['NormalLowMAP'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['NormalLowMAP'].errors?.serverError">{{bloodPressureFormGroup.controls['NormalLowMAP'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          <mat-form-field bloodPressureFormGroup class="common-mat-input" id="NormalHighMAP">
+            <mat-label>High MAP</mat-label>
+            <input matInput placeholder="Enter High MAP*" formControlName="NormalHighMAP">
+            <mat-error *ngIf="bloodPressureFormGroup.controls['NormalHighMAP'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['NormalHighMAP'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['NormalHighMAP'].errors?.serverError">{{bloodPressureFormGroup.controls['NormalHighMAP'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="mat-grid-tile">
+        <div class="controls-container">  
+          <mat-form-field bloodPressureFormGroup class="common-mat-input" id="HighMap">
+            <mat-label>Critical High MAP</mat-label>
+            <input matInput placeholder="Enter Critical High MAP*" formControlName="HighMap">
+            <mat-error *ngIf="bloodPressureFormGroup.controls['HighMap'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['HighMap'].errors?.min">Must be a positive integer.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['HighMap'].errors?.serverError">{{bloodPressureFormGroup.controls['HighMap'].errors?.serverError}}</mat-error>
+          </mat-form-field>    
+          <mat-form-field bloodPressureFormGroup class="common-mat-input" id="BPIndex">
+            <mat-label>BP Index</mat-label>
+            <input matInput placeholder="Enter Unique BP Index*" formControlName="BPIndex">
+            <mat-error *ngIf="bloodPressureFormGroup.controls['BPIndex'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="bloodPressureFormGroup.controls['BPIndex'].errors?.serverError">{{bloodPressureFormGroup.controls['BPIndex'].errors?.serverError}}</mat-error>
+          </mat-form-field>
+          
+          <div class="button-row">
+            <button mat-raised-button color="primary" (click)="saveBloodPressure(bloodPressureFormGroup.value)">Submit</button>
+            <button mat-stroked-button color="Basic" (click)="cancelBloodPressure()">Cancel</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+      </mat-grid-list>
+  
+  </form>
+  

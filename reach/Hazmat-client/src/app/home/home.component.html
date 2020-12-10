@@ -1,0 +1,42 @@
+<div>
+  <mat-drawer-container class="navigation-rail-page" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+      <button routerLink="/dashboard" mat-icon-button class="nav-button"
+        [ngClass]="{ selected: selected === 'Dashboard' }" (click)="setSelected('Dashboard')">
+        <mat-icon class="nav-icon">dashboard</mat-icon>
+        <div class="nav-button-text">Dashboard</div>
+      </button>
+      <button routerLink="/people" mat-icon-button class="nav-button" [ngClass]="{ selected: selected === 'People' }"
+        (click)="setSelected('People')">
+        <mat-icon class="nav-icon">person</mat-icon>
+        <div class="nav-button-text">People</div>
+      </button>
+      <button routerLink="/teams" mat-icon-button class="nav-button" [ngClass]="{ selected: selected === 'Teams' }"
+        (click)="setSelected('Teams')">
+        <mat-icon class="nav-icon">group</mat-icon>
+        <div class="nav-button-text">Teams</div>
+      </button>
+      <button routerLink="/devices" mat-icon-button class="nav-button" [ngClass]="{ selected: selected === 'Devices' }"
+        (click)="setSelected('Devices')">
+        <mat-icon class="nav-icon">phonelink</mat-icon>
+        <div class="nav-button-text">Devices</div>
+      </button>
+      <!-- <button routerLink="/device-assignment" mat-icon-button class="nav-button"
+        [ngClass]="{ selected: selected === 'Device Assignment' }" (click)="setSelected('Device Assignment')">
+        <mat-icon class="nav-icon">how_to_reg</mat-icon>
+        <div class="nav-button-text">
+          Device
+          <br>
+          Assignment
+        </div>
+      </button> -->
+      <button routerLink="/thresholds" mat-icon-button class="nav-button"
+        [ngClass]="{ selected: selected === 'Thresholds' }" (click)="setSelected('Thresholds')">
+        <mat-icon class="nav-icon" id="thresholds">vertical_align_center</mat-icon>
+        <div class="nav-button-text">Thresholds</div>
+      </button>
+    </mat-drawer>
+    <div class="example-sidenav-content">
+    </div>
+  </mat-drawer-container>
+</div>

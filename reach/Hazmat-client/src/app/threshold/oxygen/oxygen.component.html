@@ -1,0 +1,47 @@
+<div class="mat-elevation-z8">
+
+  <button mat-icon-button>
+    <mat-icon class="addIcons" style="color: green;" (click)="addOxygen()">add</mat-icon>
+  </button>
+  
+  <table mat-table [dataSource]="dataSource" matSort>
+    
+    <!-- SpO2Index Column -->
+    <ng-container matColumnDef="SpO2Index">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SpO2 Index </th>
+      <td mat-cell *matCellDef="let row"> {{row.SpO2Index}} </td>
+    </ng-container>
+    
+    <!-- Low Column -->
+    <ng-container matColumnDef="Low">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Low SpO2 (%) </th>
+      <td mat-cell *matCellDef="let row"> {{row.Low}} </td>
+    </ng-container>
+
+    <!-- Normal Column -->
+    <ng-container matColumnDef="Normal">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Normal SpO2 (%) </th>
+      <td mat-cell *matCellDef="let row"> {{row.Normal}} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon (click)="updateOxygen(element)" style="color: green;">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon (click)="deleteOxygen(element)" style="color: red;">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

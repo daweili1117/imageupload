@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+ 
+{% block content %}
+
+  <app-root>Loading the REaCH app...</app-root>
+
+
+
+  <script type="text/javascript"  src="{% static 'front-end/runtime.js?version=' %}{{request.num}}"></script>
+  <script type="text/javascript"  src="{% static 'front-end/polyfills.js?version=' %}{{request.num}}"></script>
+  <script type="text/javascript"  src="{% static 'front-end/styles.js?version=' %}{{request.num}}"></script>
+  <script type="text/javascript"  src="{% static 'front-end/vendor.js?version=' %}{{request.num}}"></script>
+  <script type="text/javascript"  src="{% static 'front-end/main.js?version=' %}{{request.num}}"></script>
+  <script type="text/javascript"  src="{% static 'front-end/favicon.ico?version=' %}{{request.num}}"></script>
+
+  
+    
+
+{% endblock %}

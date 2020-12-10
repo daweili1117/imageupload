@@ -1,0 +1,45 @@
+<h3>{{team.name}}</h3>
+
+<mat-card *ngFor="let member of team.crew">
+  <div>
+    <img id="image" src={{member.image}}>
+  </div>
+  <div id="nameIcons">
+    <h4>{{member.lName}}, {{member.fName}}</h4>
+    <br>
+    <mat-icon>signal_wifi_4_bar</mat-icon>
+    <mat-icon>battery_full</mat-icon>
+    <span>{{member.battery}}%</span>
+    <br>
+    <mat-icon>timer</mat-icon>
+    <span class="time">{{member.time1}}</span>
+    <span class="time">{{member.time2}}</span>
+  </div>
+  <mat-icon *ngIf="member.inDanger" style="color: #B00020;">warning</mat-icon>
+  <div id="stats">
+    <mat-table [dataSource]="memberStats">
+        <ng-container matColumnDef="hr">
+          <mat-header-cell *matHeaderCellDef> HR </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.hr}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="bp">
+          <mat-header-cell *matHeaderCellDef> BP </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.bp}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="heatIndex">
+          <mat-header-cell *matHeaderCellDef> HI </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.heatIndex}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="spO2">
+          <mat-header-cell *matHeaderCellDef> SpO2 </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.spO2}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="resp">
+          <mat-header-cell *matHeaderCellDef> Resp </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.resp}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+  </div>
+</mat-card>

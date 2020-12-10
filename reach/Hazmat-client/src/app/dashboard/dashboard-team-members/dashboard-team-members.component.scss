@@ -1,0 +1,38 @@
+#image {
+    width: 160px; 
+    height: 120px;
+    border-radius: 10%;
+}
+
+mat-card {
+    display: flex;
+    margin-top: 12px;
+}
+
+#nameIcons {
+    width: 40%;
+    margin: 0px 24px;
+}
+
+mat-icon {
+    margin: 0px 6px;
+}
+
+.time {
+    border: 1px solid black;
+    border-radius: 10%;
+    margin: 0px 2px;
+}
+
+table {
+    width: 100%;
+}
+
+#stats {
+    margin: 0px 24px;
+    width: 55%;
+}
+
+// #icons {
+
+// }
