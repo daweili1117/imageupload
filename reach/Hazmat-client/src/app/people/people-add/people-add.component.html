@@ -20,14 +20,18 @@
           </label>
           <button (click="newimage()" )>Upload</button> -->
 
-
-
-
         <mat-form-field appearance="standard" peopleFormGroup class="common-mat-input" id="ImageUrl">
-            <mat-label>Upload Person Image</mat-label>
-            <ngx-mat-file-input formControlName="ImageUrl" placeholder="Upload Image" ></ngx-mat-file-input>
-            <mat-icon matSuffix>add_photo_alternate</mat-icon>
-          </mat-form-field>
+          <mat-label>Upload Person Image</mat-label>
+          <ngx-mat-file-input formControlName="ImageUrl" placeholder="Upload Image" (change)="onImagesChanged($event)" ></ngx-mat-file-input>
+          <mat-icon matSuffix>add_photo_alternate</mat-icon>
+        </mat-form-field>
+
+        <!-- <mat-label>Upload Person Image</mat-label>
+        <input type="file" formControlName="ImageUrl" placeholder="Upload Image" (change)="onImageChanged($event)"  >
+         -->
+
+        
+        <!-- <input  type = "file" formControlName="ImageUrl" placeholder="Upload Image" (change)="onImageChanged($event)"> -->
           
         <mat-form-field peopleFormGroup class="common-mat-input" id="FirstName">
           <mat-label>First Name*</mat-label>

@@ -32,6 +32,7 @@ class PersonById(APIView):
     def put(self, request, pk, format=None):
         person = self.get_object(pk)
         serializer = PersonSerializer(person, data=request.data)
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -52,6 +53,7 @@ class PersonList(APIView):
 
     def post(self, request, format=None):
         serializer = PersonSerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

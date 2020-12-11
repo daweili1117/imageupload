@@ -109,7 +109,8 @@ export class PeopleAddComponent implements OnInit {
           FirstName: new FormControl(this.editPeople.FirstName, [Validators.required]),
           LastName: new FormControl(this.editPeople.LastName, [Validators.required]),
           RoleID: new FormControl(this.editPeople.RoleID),
-          ImageUrl: new FormControl(this.editPeople.ImageUrl.values),
+          ImageUrl: new FormControl(this.editPeople.ImageUrl),
+          // ImageUrlsource: new FormControl(''),
           HeartRateID: new FormControl(this.editPeople.HeartRateID),
           BloodPressureID: new FormControl(this.editPeople.BloodPressureID),
           HeatIndexID: new FormControl(this.editPeople.HeatIndexID),
@@ -120,7 +121,6 @@ export class PeopleAddComponent implements OnInit {
         this.peopleFormGroup.controls.BloodPressureID.setValue(this.editPeople.BloodPressureID);
         this.peopleFormGroup.controls.HeatIndexID.setValue(this.editPeople.HeatIndexID);
         this.peopleFormGroup.controls.SpO2ID.setValue(this.editPeople.SpO2ID);
-        this.peopleFormGroup.controls.ImageUrl.setValue(this.editPeople.ImageUrl.values)
       }
       else{
         this.peopleFormGroup = new FormGroup({
@@ -130,6 +130,7 @@ export class PeopleAddComponent implements OnInit {
         LastName: new FormControl('', [Validators.required]),
         RoleID: new FormControl(''),
         ImageUrl: new FormControl(''),
+        // ImageUrlsource: new FormControl(''),
         HeartRateID: new FormControl(''),
         BloodPressureID: new FormControl(''),
         HeatIndexID: new FormControl(''),
@@ -190,6 +191,30 @@ export class PeopleAddComponent implements OnInit {
       }, []);
     });
     
+  }
+
+  onImageChanged(event) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.peopleFormGroup.patchValue({
+        ImageUrl: file
+      });
+      //this.editPeople.ImageUrl = file;
+      //this.peopleFormGroup.controls.ImageUrlsource.setValue(file);
+    }
+  }
+
+  onImagesChanged(event) {
+
+    if (event._files.File.length > 0) {
+      const file = event._files.File[0];
+      this.peopleFormGroup.patchValue({
+        ImageUrl: file
+      });
+      //this.editPeople.ImageUrl = file;
+      //this.peopleFormGroup.controls.ImageUrlsource.setValue(file);
+    }
   }
 
 savePerson(person: PeopleData) {
